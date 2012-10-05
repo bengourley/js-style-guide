@@ -203,7 +203,8 @@ var adminUsersFromDb = db.query('SELECT * FROM users ...')
 
 ## Use UpperCamelCase for constructors
 
-Constructors should be capitalized using `UpperCamelCase`.
+Constructors should be capitalized using `UpperCamelCase` (also known as
+Pascal Case).
 
 *Right:*
 
