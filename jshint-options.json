@@ -1,0 +1,21 @@
+{ "browser": true
+, "curly": false
+, "devel": true
+, "eqeqeq": true
+, "eqnull": true
+, "es5": false
+, "evil": false
+, "immed": false
+, "jquery": true
+, "latedef": false
+, "laxcomma": true
+, "newcap": true
+, "node": true
+, "noempty": true
+, "nonew": true
+, "smarttabs": true
+, "trailing": false
+, "undef": true
+, "strict": false
+, "asi": true
+}

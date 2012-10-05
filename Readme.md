@@ -25,6 +25,7 @@ Follow Crockford’s rules about spaces and **be consistent**:
 - Exactly one space after a comma: `console.log(a, b, c)`
 - Exactly one space each side of infix operators: `5 + 5 / 3`, `10 * Math.min(a, b)`
 - No space between a prefix/postfix operator and its operand: `-8 / 2`, `i++`
+- No space after a property name and exactly one space after it in an object literal: `foo: bar`
 
 ## No trailing whitespace
 
@@ -114,6 +115,33 @@ if (true)
 ```
 
 Also, notice the use of whitespace before and after the condition statement.
+
+## One liners
+
+Blocks containing a single statement may appear on one line, if desired. Curly
+braces should be omitted. Blocks containing more than one statement (and an `if`
+that has any `else if`s or an `else`) should always appear on multiple lines with
+braces. This is because the most important tokens should
+always appear on the left.
+
+*Right*:
+
+```
+if (true) console.log('winning')
+
+if (true) {
+  console.log('winning')
+} else {
+  console.log('losing')
+}
+```
+
+*Wrong*:
+
+```
+if (true) { console.log('winning') }
+if (true) console.log('winning') else console.log('losing')
+```
 
 ## Declare many variables per var statement
 
