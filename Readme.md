@@ -1,13 +1,12 @@
 # Node.js Style Guide
 
 This is a guide for writing consistent and aesthetically pleasing node.js code.
-It is inspired by what is popular within the community, and flavored with some
-personal opinions.
+It is inspired by what is inspired by pragmatic thought leaders in the community
+and decisions from working with JavaScript in Node and in the browser day-in-day-out.
 
-This guide was created by [Felix Geisendörfer](http://felixge.de/) and is
+This guide was forked from [Felix Geisendörfer](http://felixge.de/)'s guide and is
 licensed under the [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
-license. You are encouraged to fork this repository and make adjustments
-according to your preferences.
+license. The original guide is located [here](https://github.com/felixge/node-style-guide) You are encouraged to fork this repository and make adjustments according to your preferences.
 
 ![Creative Commons License](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)
 
@@ -16,27 +15,40 @@ according to your preferences.
 Use 2 spaces for indenting your code and swear an oath to never mix tabs and
 spaces in your code - a special kind of hell is awaiting you otherwise.
 
+## Spacing
+
+Follow Crockford’s rules about spaces and **be consistent**:
+
+- No space between and named function and its brackets: `function foo() {}`
+- Exactly one space between an annonymous function and its brackets: `function () {}`
+- Exactly one space after a comma: `console.log(a, b, c)`
+- Exactly one space each side of infix operators: `5 + 5 / 3`, `10 * Math.min(a, b)`
+- No space between a prefix/postfix operator and its operand: `-8 / 2`, `i++`
+
 ## No trailing whitespace
 
 Just like you brush your teeth after every meal, you clean up any trailing
 whitespace in your JS files before committing. Otherwise the rotten smell of
 careless neglect will eventually drive away contributors and/or co-workers.
 
-## Use Semicolons
+## No Semicolons
 
-According to [scientific research][hnsemicolons], the usage of semicolons is
-a core values of our community. Consider the points of [the opposition][], but
-be a traditionalist when it comes to abusing error correction mechanisms for
-cheap syntactic pleasures.
+Semi-colons should be omitted for brevity and reduced visual noise.
 
-[the opposition]: http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding
-[hnsemicolons]: http://news.ycombinator.com/item?id=1547647
+Semi-colons are unnecessary and all JavaScript implementations follow the same
+automatic semi-colon injection rules to-the-T (yes, including IE6). Removing
+them makes the code easier to write and easier to read.
+
+There are exceptional circumstances when lines should start with a semi-colon.
+**TODO** list them. However, these circumstances are not common, and you should
+ratify your decision to use one before beginning a line with a semi-colon.
+
 
 ## 80 characters per line
 
-Limit your lines to 80 characters. Yes, screens have gotten much bigger over the
-last few years, but your brain has not. Use the additional room for split screen,
-your editor supports that, right?
+Limit your lines to 80 characters and *be strict about it*. Yes, screens have
+gotten much bigger over the last few years, but your brain has not. Use the
+additional room for split screen, your editor supports that, right?
 
 ## Use single quotes
 
@@ -45,13 +57,13 @@ Use single quotes, unless you are writing JSON.
 *Right:*
 
 ```js
-var foo = 'bar';
+var foo = 'bar'
 ```
 
 *Wrong:*
 
 ```js
-var foo = "bar";
+var foo = "bar"
 ```
 
 ## Opening braces go on the same line
@@ -62,7 +74,7 @@ Your opening braces go on the same line as the statement.
 
 ```js
 if (true) {
-  console.log('winning');
+  console.log('winning')
 }
 ```
 
@@ -71,68 +83,70 @@ if (true) {
 ```js
 if (true)
 {
-  console.log('losing');
+  console.log('losing')
 }
 ```
 
 Also, notice the use of whitespace before and after the condition statement.
 
-## Declare one variable per var statement
+## Declare many variables per var statement
 
-Declare one variable per var statement, it makes it easier to re-order the
-lines. Ignore [Crockford][crockfordconvention] on this, and put those
-declarations wherever they make sense.
+Declare many variables per var statement as it is less to type, and less
+visual noise.
 
 *Right:*
 
 ```js
-var keys   = ['foo', 'bar'];
-var values = [23, 42];
+var keys = ['foo', 'bar']
+  , values = [23, 42]
+  , object = {}
+  , key
+
+while (items.length) {
+  key = keys.pop()
+  object[key] = values.pop()
+}
+```
+
+*Wrong:*
+
+```js
+var keys   = ['foo', 'bar']
+var values = [23, 42]
 
 var object = {};
 while (items.length) {
-  var key = keys.pop();
-  object[key] = values.pop();
+  var key = keys.pop()
+  object[key] = values.pop()
 }
 ```
-
-*Wrong:*
-
-```js
-var keys = ['foo', 'bar'],
-    values = [23, 42],
-    object = {},
-    key;
-
-while (items.length) {
-  key = keys.pop();
-  object[key] = values.pop();
-}
-```
-
-[crockfordconvention]: http://javascript.crockford.com/code.html
 
 ## Use lowerCamelCase for variables, properties and function names
 
-Variables, properties and function names should use `lowerCamelCase`.  They
-should also be descriptive. Single character variables and uncommon
-abbreviations should generally be avoided.
+Variables, properties and function names should use `lowerCamelCase`.  It is
+most preferrable to use a single word for a variable name. Make an effort to
+choose a good balance between meaningfull-ness and brevity. Single character
+variables should generally be avoided, but are occasionally acceptable.
 
 *Right:*
 
 ```js
-var adminUser = db.query('SELECT * FROM users ...');
+var admins = db.query('SELECT * FROM users ...');
 ```
 
 *Wrong:*
 
 ```js
-var admin_user = db.query('SELECT * FROM users ...');
+var admin_user = db.query('SELECT * FROM users ...')
 ```
 
-## Use UpperCamelCase for class names
+```js
+var adminUsersFromDb = db.query('SELECT * FROM users ...')
+```
 
-Class names should be capitalized using `UpperCamelCase`.
+## Use UpperCamelCase for constructors
+
+Constructors should be capitalized using `UpperCamelCase`.
 
 *Right:*
 
@@ -160,38 +174,38 @@ ECMA standard.
 *Right:*
 
 ```js
-var SECOND = 1 * 1000;
+var SECOND = 1 * 1000
 
 function File() {
 }
-File.FULL_PERMISSIONS = 0777;
+File.FULL_PERMISSIONS = 0777
 ```
 
 *Wrong:*
 
 ```js
-const SECOND = 1 * 1000;
+const SECOND = 1 * 1000
 
 function File() {
 }
-File.fullPermissions = 0777;
+File.fullPermissions = 0777
 ```
 
 [const]: https://developer.mozilla.org/en/JavaScript/Reference/Statements/const
 
 ## Object / Array creation
 
-Use trailing commas and put *short* declarations on a single line. Only quote
+Use comma first style and put *short* declarations on a single line. Only quote
 keys when your interpreter complains:
 
 *Right:*
 
 ```js
-var a = ['hello', 'world'];
-var b = {
-  good: 'code',
-  'is generally': 'pretty',
-};
+var a = ['hello', 'world']
+var b =
+  { good: 'code'
+  , 'is generally': 'pretty',
+  }
 ```
 
 *Wrong:*
@@ -199,10 +213,58 @@ var b = {
 ```js
 var a = [
   'hello', 'world'
-];
-var b = {"good": 'code'
-        , is generally: 'pretty'
-        };
+]
+var b = {
+  "good": 'code',
+  is generally: 'pretty'
+};
+```
+
+*Right:*
+
+```
+var required =
+  [ 'main-nav'
+  , 'local-news-selector'
+  , 'notifications'
+  , 'datepicker'
+  ]
+```
+
+*Wrong:*
+
+```
+var required = [
+  'main-nav',
+  'local-news-selector',
+  'notifications',
+  'datepicker',
+]
+```
+For an explanation on why to use comma-first, look no further than
+[this gist by Isaacs][9]. Deviate slightly from the npm style here about the
+level of indentation. The npm style is to line up with where the opening symbol
+naturally occurs:
+
+*Wrong:*
+
+```
+var myObj = { propA: 10
+            , proB: 20
+            }
+```
+
+It is better to have consistent levels of indenation, which means you don’t have
+to maintain all those indents if you rename the variable. Break a line and
+indent before the start symbol:
+
+*Right:*
+
+```
+  var myObj =
+    { propA: 10
+    , proB: 20
+    }
 ```
 
 ## Use the === operator
@@ -213,9 +275,9 @@ the triple equality operator as it will work just as expected.
 *Right:*
 
 ```js
-var a = 0;
+var a = 0
 if (a === '') {
-  console.log('winning');
+  console.log('winning')
 }
 
 ```
@@ -223,56 +285,55 @@ if (a === '') {
 *Wrong:*
 
 ```js
-var a = 0;
+var a = 0
 if (a == '') {
-  console.log('losing');
+  console.log('losing')
 }
 ```
 
 [comparisonoperators]: https://developer.mozilla.org/en/JavaScript/Reference/Operators/Comparison_Operators
 
-## Use multi-line ternary operator
+## Use the ternary operator
 
-The ternary operator should not be used on a single line. Split it up into multiple lines instead.
+The ternary operator should be used on a single line if it will fit within the 80
+char limit. Split it up into multiple lines if it doesn't.
 
 *Right:*
 
 ```js
-var foo = (a === b)
-  ? 1
-  : 2;
+var foo = (a === b) ? 1 : 2
 ```
 
 *Wrong:*
 
 ```js
-var foo = (a === b) ? 1 : 2;
+var foo = (aReallyLongVariableName.someProperty === bReallyLongVariableName.someProperty) ? 1 : 2
 ```
 
 ## Do not extend built-in prototypes
 
-Do not extend the prototype of native JavaScript objects. Your future self will
-be forever grateful.
+Do not extend the prototype of native JavaScript objects. Unless you are writing
+or using a 'polyfill' to simulate standard behaviour in old environments.
 
 *Right:*
 
 ```js
-var a = [];
+var a = []
 if (!a.length) {
-  console.log('winning');
+  console.log('winning')
 }
 ```
 
 *Wrong:*
 
 ```js
-Array.prototype.empty = function() {
-  return !this.length;
+Array.prototype.empty = function () {
+  return !this.length
 }
 
-var a = [];
+var a = []
 if (a.empty()) {
-  console.log('losing');
+  console.log('losing')
 }
 ```
 
@@ -283,9 +344,9 @@ Any non-trivial conditions should be assigned to a descriptive variable:
 *Right:*
 
 ```js
-var isAuthorized = (user.isAdmin() || user.isModerator());
+var isAuthorized = (user.isAdmin() || user.isModerator())
 if (isAuthorized) {
-  console.log('winning');
+  console.log('winning')
 }
 ```
 
@@ -293,7 +354,7 @@ if (isAuthorized) {
 
 ```js
 if (user.isAdmin() || user.isModerator()) {
-  console.log('losing');
+  console.log('losing')
 }
 ```
 
@@ -313,14 +374,14 @@ as possible.
 ```js
 function isPercentage(val) {
   if (val < 0) {
-    return false;
+    return false
   }
 
   if (val > 100) {
-    return false;
+    return false
   }
 
-  return true;
+  return true
 }
 ```
 
@@ -330,12 +391,12 @@ function isPercentage(val) {
 function isPercentage(val) {
   if (val >= 0) {
     if (val < 100) {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
   } else {
-    return false;
+    return false
   }
 }
 ```
@@ -345,8 +406,8 @@ further:
 
 ```js
 function isPercentage(val) {
-  var isInRange = (val >= 0 && val <= 100);
-  return isInRange;
+  var isInRange = (val >= 0 && val <= 100)
+  return isInRange
 }
 ```
 
@@ -359,55 +420,79 @@ will produce better stack traces, heap and cpu profiles.
 
 ```js
 req.on('end', function onEnd() {
-  console.log('winning');
+  console.log('winning')
 });
 ```
 
 *Wrong:*
 
 ```js
-req.on('end', function() {
-  console.log('losing');
+req.on('end', function () {
+  console.log('losing')
 });
 ```
 
-## No nested closures
+## Limit nested closures
 
-Use closures, but don't nest them. Otherwise your code will become a mess.
+Use closures, but don't nest them too much. Otherwise your code will become a mess.
+Your 80 char line limit should help prevent you nesting too far.
 
 *Right:*
 
 ```js
-setTimeout(function() {
-  client.connect(afterConnect);
-}, 1000);
+setTimeout(function () {
+  client.connect(afterConnect)
+}, 1000)
 
 function afterConnect() {
-  console.log('winning');
+  console.log('winning')
 }
 ```
 
 *Wrong:*
 
 ```js
-setTimeout(function() {
-  client.connect(function() {
-    console.log('losing');
+setTimeout(function () {
+  client.connect(function () {
+    console.log('losing')
   });
-}, 1000);
+}, 1000)
 ```
 
-## Use slashes for comments
+## Comments
 
-Use slashes for both single line and multi line comments. Try to write
-comments that explain higher level mechanisms or clarify difficult
-segments of your code. Don't use comments to restate trivial things.
+Inline comments should be line comments: `//`, regardless of how many lines
+they span, eg:
+
+      // Only run on browsers that support media queries.
+      // If a browser doesn't support media queries, .mq()
+      // will always return false.
+      if (!window.Modernizr.mq('(min-width:0px)')) return
+      breakPoints.push(new BreakPoint(name, media).check())
+
+  Comments describing the functionality of a method or function should be
+  multi-line comments: `/* */`, eg:
+
+      /*
+       * Sanitizes a file-type extension
+       */
+      function getFormat(f) {
+        switch (f) {
+          case '.jpg': return 'jpeg'
+          case '.gif': return 'gif'
+          default: return 'png'
+        }
+      }
+
+Try to write comments that explain higher level mechanisms or clarify difficult
+segments of your code. Don't use comments to restate trivial things. Be terse,
+to the point and don't waffle.
 
 *Right:*
 
 ```js
 // 'ID_SOMETHING=VALUE' -> ['ID_SOMETHING=VALUE'', 'SOMETHING', 'VALUE']
-var matches = item.match(/ID_([^\n]+)=([^\n]+)/));
+var matches = item.match(/ID_([^\n]+)=([^\n]+)/))
 
 // This function has a nasty side effect where a failure to increment a
 // redis counter used for statistics will cause an exception. This needs
@@ -416,7 +501,7 @@ function loadUser(id, cb) {
   // ...
 }
 
-var isSessionValid = (session.expires < Date.now());
+var isSessionValid = (session.expires < Date.now())
 if (isSessionValid) {
   // ...
 }
@@ -426,19 +511,102 @@ if (isSessionValid) {
 
 ```js
 // Execute a regex
-var matches = item.match(/ID_([^\n]+)=([^\n]+)/));
+var matches = item.match(/ID_([^\n]+)=([^\n]+)/))
 
-// Usage: loadUser(5, function() { ... })
+// Usage: loadUser(5, function () { ... })
 function loadUser(id, cb) {
   // ...
 }
 
 // Check if the session is valid
-var isSessionValid = (session.expires < Date.now());
+var isSessionValid = (session.expires < Date.now())
 // If the session is valid
 if (isSessionValid) {
   // ...
 }
+```
+
+## Errors
+
+Use actual Error objects for errors, not strings or any other type of object.
+Justification [here](http://www.devthought.com/2011/12/22/a-string-is-not-an-error/).
+
+Don't `throw` in asynchronous code.
+
+*Right*
+
+```
+if (unicorns.length < 10) {
+  callback(new Error('not enough unicorns'))
+}
+```
+
+*Wrong:*
+
+```
+if (unicorns.length < 10) {
+  callback('not enough unicorns')
+}
+```
+
+```
+if (unicorns.length < 10) {
+  callback('not enough unicorns')
+}
+```
+
+```
+if (unicorns.length < 10) {
+  throw 'not enough unicorns'
+} else {
+  callback(null, unicorns)
+}
+```
+
+## Asynchronous function signature
+
+Writing asynchronous functions with a callback, the callback's signature should
+always be `function (err, data) { ... }`.
+
+## Prefer function declaration over assigning a function expression
+
+To define a function in the current scope, use a function declaration. Don't assign
+the result of a function expression to a variable.
+
+*Right:*
+
+```
+function greet() {
+  console.log('hello')
+}
+```
+
+*Wrong:*
+
+```
+var greet = function () {
+  console.log('hello')
+}
+```
+
+## module.exports
+
+When writing in a node style environment, export only one thing from your module.
+In general, if you are assigning multiple exports, you have designed a poor API
+or you have written several modules that should be separated out.
+
+*Right*:
+
+```
+module.exports = jim
+```
+
+*Wrong*:
+
+```
+module.exports.jim = jim
+module.exports.bob = bob
+module.exports.barry = barry
 ```
 
 ## Object.freeze, Object.preventExtensions, Object.seal, with, eval
