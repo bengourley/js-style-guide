@@ -41,8 +41,33 @@ automatic semi-colon injection rules to-the-T (yes, including IE6). Removing
 them makes the code easier to write and easier to read.
 
 There are exceptional circumstances when lines should start with a semi-colon.
-**TODO** list them. However, these circumstances are not common, and you should
-ratify your decision to use one before beginning a line with a semi-colon.
+However, these circumstances are not common, and you should ratify your decision
+to use one before beginning a line with a semi-colon.
+
+Here is Isaacs' run down on those circumstances (verbatim, from
+[here](https://npmjs.org/doc/coding-style.html))
+
+- for (;;) loops. They're actually required.
+- null loops like: while (something) ; (But you'd better have a good reason for doing that.)
+- case "foo": doSomething(); break
+- In front of a leading ( or [ at the start of the line. This prevents the expression from being interpreted as a function call or property access, respectively.
+
+Some examples of good semicolon usage:
+
+```
+;(x || y).doSomething()
+;[a, b, c].forEach(doSomething)
+for (var i = 0; i < 10; i ++) {
+  switch (state) {
+    case "begin": start(); continue
+    case "end": finish(); break
+    default: throw new Error("unknown state")
+  }
+  end()
+}
+```
+
+Note that starting lines with - and + also should be prefixed with a semicolon, but this is much less common.
 
 
 ## 80 characters per line
