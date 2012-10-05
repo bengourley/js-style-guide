@@ -154,8 +154,8 @@ visual noise.
 *Right:*
 
 ```js
-var keys = ['foo', 'bar']
-  , values = [23, 42]
+var keys = [ 'foo', 'bar' ]
+  , values = [ 23, 42 ]
   , object = {}
   , key
 
@@ -168,8 +168,8 @@ while (items.length) {
 *Wrong:*
 
 ```js
-var keys   = ['foo', 'bar']
-var values = [23, 42]
+var keys   = [ 'foo', 'bar' ]
+var values = [ 23, 42 ]
 
 var object = {};
 while (items.length) {
@@ -258,7 +258,7 @@ keys when your interpreter complains:
 *Right:*
 
 ```js
-var a = ['hello', 'world']
+var a = [ 'hello', 'world' ]
 var b =
   { good: 'code'
   , 'is generally': 'pretty'
@@ -548,7 +548,7 @@ to the point and don't waffle.
 *Right:*
 
 ```js
-// 'ID_SOMETHING=VALUE' -> ['ID_SOMETHING=VALUE'', 'SOMETHING', 'VALUE']
+// 'ID_SOMETHING=VALUE' -> [ 'ID_SOMETHING=VALUE'', 'SOMETHING', 'VALUE' ]
 var matches = item.match(/ID_([^\n]+)=([^\n]+)/))
 
 // This function has a nasty side effect where a failure to increment a
