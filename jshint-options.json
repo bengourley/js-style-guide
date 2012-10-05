@@ -1,21 +1,28 @@
-{ "browser": true
+{ "camelcase": true
 , "curly": false
-, "devel": true
 , "eqeqeq": true
-, "eqnull": true
-, "es5": false
-, "evil": false
 , "immed": false
-, "jquery": true
+, "indent": 2
 , "latedef": false
-, "laxcomma": true
 , "newcap": true
-, "node": true
-, "noempty": true
+, "noempty": false
 , "nonew": true
-, "smarttabs": true
-, "trailing": false
+, "quotmark": "single"
 , "undef": true
 , "strict": false
+, "trailing": true
+, "maxparams": 4
+
 , "asi": true
+, "eqnull": true
+, "evil": false
+, "laxbreak": true
+, "laxcomma": true
+, "devel": true
+, "es5": false
+
+, "browser": true
+, "node": true
+, "jquery": true
+
 }
