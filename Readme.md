@@ -421,6 +421,11 @@ Keep your functions short. A good function fits on a slide that the people in
 the last row of a big room can comfortably read. So don't count on them having
 perfect vision and limit yourself to ~15 lines of code per function.
 
+## Keep your files small
+There are times when a 1,000+ line file is needed but as a general rule of thumb 
+try and keep your file < 300 lines. More that 500 lines and it's starting to be
+a code smell.
+
 ## Return early from functions
 
 To avoid deep nesting of if-statements, always return a functions value as early
