@@ -9,6 +9,9 @@ licensed under the [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/
 license. The original guide is located [here](https://github.com/felixge/node-style-guide).
 You are encouraged to fork this repository and make adjustments according to your preferences.
 
+There is a jshint options json file in this repo to help you conform to
+some of the guidelines outlined here.
+
 ![Creative Commons License](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)
 
 ## 2 Spaces for indention
