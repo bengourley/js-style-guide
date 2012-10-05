@@ -1,12 +1,13 @@
 # Node.js Style Guide
 
-This is a guide for writing consistent and aesthetically pleasing node.js code.
+This is a guide for writing JavaScript code in any environment.
 It is inspired by what is inspired by pragmatic thought leaders in the community
 and decisions from working with JavaScript in Node and in the browser day-in-day-out.
 
 This guide was forked from [Felix Geisendörfer](http://felixge.de/)'s guide and is
 licensed under the [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
-license. The original guide is located [here](https://github.com/felixge/node-style-guide) You are encouraged to fork this repository and make adjustments according to your preferences.
+license. The original guide is located [here](https://github.com/felixge/node-style-guide).
+You are encouraged to fork this repository and make adjustments according to your preferences.
 
 ![Creative Commons License](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)
 
