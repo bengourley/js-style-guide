@@ -47,10 +47,10 @@ to use one before beginning a line with a semi-colon.
 Here is Isaacs' run down on those circumstances (verbatim, from
 [here](https://npmjs.org/doc/coding-style.html))
 
-- for (;;) loops. They're actually required.
-- null loops like: while (something) ; (But you'd better have a good reason for doing that.)
-- case "foo": doSomething(); break
-- In front of a leading ( or [ at the start of the line. This prevents the expression from being interpreted as a function call or property access, respectively.
+- `for (;;)` loops. They're actually required.
+- null loops like: `while (something) ;` (But you'd better have a good reason for doing that.)
+- `case "foo": doSomething(); break`
+- In front of a leading `(` or `[` at the start of the line. This prevents the expression from being interpreted as a function call or property access, respectively.
 
 Some examples of good semicolon usage:
 
