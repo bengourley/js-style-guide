@@ -421,9 +421,31 @@ Keep your functions short. A good function fits on a slide that the people in
 the last row of a big room can comfortably read. So don't count on them having
 perfect vision and limit yourself to ~15 lines of code per function.
 
+## Limit your parameters
+
+Functions should aim to have less than 5 parameters. 5 is the most that
+any should have. If you find yourself wanting more paramaters, you should
+generally use an options hash instead.
+
+*Good:*
+
+```
+function animate(el, options, cb) {
+  ...
+}
+```
+
+*Bad:*
+
+```
+function animate(el, duration, ease, delay, properties, cb) {
+  ...
+}
+```
+
 ## Keep your files small
-There are times when a 1,000+ line file is needed but as a general rule of thumb 
-try and keep your file < 300 lines. More that 500 lines and it's starting to be
+There are times when a 1,000+ line file is needed but as a general rule of thumb
+try and keep your file < 300 lines. More than 500 lines and it's starting to be
 a code smell.
 
 ## Return early from functions
