@@ -38,18 +38,18 @@ careless neglect will eventually drive away contributors and/or co-workers.
 
 ## No Semicolons
 
-Semi-colons should be omitted for brevity and reduced visual noise.
+Semicolons should be omitted for brevity and reduced visual noise.
 
-Semi-colons are unnecessary and all JavaScript implementations follow the same
-automatic semi-colon injection rules to-the-T (yes, including IE6). Removing
+Semicolons are unnecessary and all JavaScript implementations follow the same
+automatic semicolon injection rules to-the-T (yes, including IE6). Removing
 them makes the code easier to write and easier to read.
 
-There are exceptional circumstances when lines should start with a semi-colon.
+There are exceptional circumstances when lines should start with a semicolon.
 However, these circumstances are not common, and you should ratify your decision
-to use one before beginning a line with a semi-colon.
+to use one before beginning a line with a semicolon.
 
 Here is Isaacs' run down on those circumstances (verbatim, from
-[here](https://npmjs.org/doc/coding-style.html))
+[here](https://npmjs.org/doc/coding-style.html)):
 
 - `for (;;)` loops. They're actually required.
 - null loops like: `while (something) ;` (But you'd better have a good reason for doing that.)
@@ -73,6 +73,7 @@ for (var i = 0; i < 10; i ++) {
 
 Note that starting lines with - and + also should be prefixed with a semicolon, but this is much less common.
 
+**__To Recap:__ If a line begins with `[`, `(`, `+` or `-`, you should start it with a semicolon.**
 
 ## 80 characters per line
 
