@@ -61,7 +61,7 @@ Some examples of good semicolon usage:
 ```
 ;(x || y).doSomething()
 ;[a, b, c].forEach(doSomething)
-for (var i = 0; i < 10; i ++) {
+for (var i = 0; i < 10; i++) {
   switch (state) {
     case "begin": start(); continue
     case "end": finish(); break
