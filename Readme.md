@@ -1,4 +1,4 @@
-# Node.js Style Guide
+# JavaScript Style Guide
 
 This is a guide for writing JavaScript code in any environment.
 It is inspired by pragmatic thought leaders in the community
@@ -62,12 +62,7 @@ Some examples of good semicolon usage:
 ;(x || y).doSomething()
 ;[a, b, c].forEach(doSomething)
 for (var i = 0; i < 10; i++) {
-  switch (state) {
-    case "begin": start(); continue
-    case "end": finish(); break
-    default: throw new Error("unknown state")
-  }
-  end()
+  doSomething()
 }
 ```
 
@@ -431,7 +426,7 @@ generally use an options hash instead.
 
 *Good:*
 
-```
+```js
 function animate(el, options, cb) {
   ...
 }
@@ -439,7 +434,7 @@ function animate(el, options, cb) {
 
 *Bad:*
 
-```
+```js
 function animate(el, duration, ease, delay, properties, cb) {
   ...
 }
@@ -621,7 +616,7 @@ Don't `throw` in asynchronous code.
 
 *Right*
 
-```
+```js
 if (unicorns.length < 10) {
   callback(new Error('not enough unicorns'))
 }
@@ -629,19 +624,19 @@ if (unicorns.length < 10) {
 
 *Wrong:*
 
-```
+```js
 if (unicorns.length < 10) {
   callback('not enough unicorns')
 }
 ```
 
-```
+```js
 if (unicorns.length < 10) {
   callback('not enough unicorns')
 }
 ```
 
-```
+```js
 if (unicorns.length < 10) {
   throw 'not enough unicorns'
 } else {
@@ -661,7 +656,7 @@ the result of a function expression to a variable.
 
 *Right:*
 
-```
+```js
 function greet() {
   console.log('hello')
 }
@@ -669,7 +664,7 @@ function greet() {
 
 *Wrong:*
 
-```
+```js
 var greet = function () {
   console.log('hello')
 }
@@ -681,18 +676,52 @@ When writing in a node style environment, export only one thing from your module
 In general, if you are assigning multiple exports, you have designed a poor API
 or you have written several modules that should be separated out.
 
+Put your module exports as close to the top of the file as possible. This helps
+someone reading your module to know what is being exported.
+
 *Right*:
 
-```
+```js
 module.exports = jim
 ```
 
 *Wrong*:
 
-```
+```js
 module.exports.jim = jim
 module.exports.bob = bob
 module.exports.barry = barry
+```
+
+## Require as soon as possible
+
+Put as many `require`s as possible in the main body of your module (so that it runs
+when it is loaded).
+
+If something is missing you want to know about it when your program starts up
+and not when it's been running in production for 48hours before hitting a certain
+code path.
+
+*Right*:
+
+```js
+module.exports = doSomething
+
+var async = require('async')
+
+function doSomething() {
+  async.map(...)
+}
+```
+
+*Wrong*:
+
+```js
+module.exports = doSomething
+
+function doSomething() {
+  require('async').map(...)
+}
 ```
 
 ## Object.freeze, Object.preventExtensions, Object.seal, with, eval
@@ -708,3 +737,35 @@ Feel free to use getters that are free from [side effects][sideeffect], like
 providing a length property for a collection class.
 
 [sideeffect]: http://en.wikipedia.org/wiki/Side_effect_(computer_science)
+
+## Embedding JS in HTML
+
+The type `attribute` is unnecessary and obsolete, so don't use it. `//<![CDATA[`
+is required if you want your document to parse as XML. You should be using
+the HTML5 DOCTYPE, in which case your document will parse as HTML meaning that
+`//<![CDATA[` is unnecessary.
+
+*Right:*
+
+```html
+<script>
+  console.log('Boo')
+</script>
+```
+
+*Wrong:*
+
+```html
+<script type="text/javascript">//<![CDATA[
+  console.log('Boo')
+//]]></script>
+```
+
+## Minify and concatenate JavaScript that is sent to the browser
+
+Minimising the number of HTTP requests and file sizes will make your site faster.
+
+## Use module.js in the browser
+
+The browser environment has no native module system. Node has a good one, so
+simlulate that with [module.js](https://github.com/bengourley/module.js).
