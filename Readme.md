@@ -296,7 +296,7 @@ var required = [
 ]
 ```
 For an explanation on why to use comma-first, look no further than
-[this gist by Isaacs][9]. Deviate slightly from the npm style here about the
+[this gist by Isaacs](https://gist.github.com/357981/). Deviate slightly from the npm style here about the
 level of indentation. The npm style is to line up with where the opening symbol
 naturally occurs:
 
