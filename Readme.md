@@ -575,9 +575,11 @@ to the point and don't waffle.
 // 'ID_SOMETHING=VALUE' -> [ 'ID_SOMETHING=VALUE'', 'SOMETHING', 'VALUE' ]
 var matches = item.match(/ID_([^\n]+)=([^\n]+)/))
 
-// This function has a nasty side effect where a failure to increment a
-// redis counter used for statistics will cause an exception. This needs
-// to be fixed in a later iteration.
+/*
+ * This function has a nasty side effect where a failure to increment a
+ * redis counter used for statistics will cause an exception. This needs
+ * to be fixed in a later iteration.
+ */
 function loadUser(id, cb) {
   // ...
 }
