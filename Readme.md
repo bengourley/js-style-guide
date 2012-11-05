@@ -492,27 +492,6 @@ function isPercentage(val) {
 }
 ```
 
-## Name your closures
-
-Feel free to give your closures a name. It shows that you care about them, and
-will produce better stack traces, heap and cpu profiles.
-
-*Right:*
-
-```js
-req.on('end', function onEnd() {
-  console.log('winning')
-});
-```
-
-*Wrong:*
-
-```js
-req.on('end', function () {
-  console.log('losing')
-});
-```
-
 ## Limit nested closures
 
 Use closures, but don't nest them too much. Otherwise your code will become a mess.
