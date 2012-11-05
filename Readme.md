@@ -296,7 +296,7 @@ var required = [
 ]
 ```
 For an explanation on why to use comma-first, look no further than
-[this gist by Isaacs][9]. Deviate slightly from the npm style here about the
+[this gist by Isaacs](https://gist.github.com/357981/). Deviate slightly from the npm style here about the
 level of indentation. The npm style is to line up with where the opening symbol
 naturally occurs:
 
@@ -554,9 +554,11 @@ to the point and don't waffle.
 // 'ID_SOMETHING=VALUE' -> [ 'ID_SOMETHING=VALUE'', 'SOMETHING', 'VALUE' ]
 var matches = item.match(/ID_([^\n]+)=([^\n]+)/))
 
-// This function has a nasty side effect where a failure to increment a
-// redis counter used for statistics will cause an exception. This needs
-// to be fixed in a later iteration.
+/*
+ * This function has a nasty side effect where a failure to increment a
+ * redis counter used for statistics will cause an exception. This needs
+ * to be fixed in a later iteration.
+ */
 function loadUser(id, cb) {
   // ...
 }
