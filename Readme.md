@@ -9,8 +9,25 @@ licensed under the [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/
 license. The original guide is located [here](https://github.com/felixge/node-style-guide).
 You are encouraged to fork this repository and make adjustments according to your preferences.
 
+## jshint
+
 There is a jshint options json file in this repo to help you conform to
 some of the guidelines outlined here.
+
+### Adding to your dot files (*nix)
+
+     git clone git://github.com/bengourley/js-style-guide ~/jshint-options
+     ln -s ~/jshint-options/jshint-options.json ~/.jshintrc
+
+### Adding to your project
+
+Putting a copy in your project root will ensure that the project always has the same jshint config
+even if your global .jshintrc config changes. Also it allow you to put project specific predefs that
+don't belong in your global.
+
+     curl https://raw.github.com/bengourley/js-style-guide/master/jshint-options.json > .jshintrc
+     git add .jshintrc
+     git commit -m 'Adding .jshintrc from github.com/bengourley/js-style-guide' .jshintrc
 
 ![Creative Commons License](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)
 
