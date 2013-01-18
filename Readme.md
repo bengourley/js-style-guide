@@ -1,4 +1,4 @@
-# Node.js Style Guide
+# JavaScript Style Guide
 
 This is a guide for writing JavaScript code in any environment.
 It is inspired by pragmatic thought leaders in the community
@@ -55,18 +55,18 @@ careless neglect will eventually drive away contributors and/or co-workers.
 
 ## No Semicolons
 
-Semi-colons should be omitted for brevity and reduced visual noise.
+Semicolons should be omitted for brevity and reduced visual noise.
 
-Semi-colons are unnecessary and all JavaScript implementations follow the same
-automatic semi-colon injection rules to-the-T (yes, including IE6). Removing
+Semicolons are unnecessary and all JavaScript implementations follow the same
+automatic semicolon injection rules to-the-T (yes, including IE6). Removing
 them makes the code easier to write and easier to read.
 
-There are exceptional circumstances when lines should start with a semi-colon.
+There are exceptional circumstances when lines should start with a semicolon.
 However, these circumstances are not common, and you should ratify your decision
-to use one before beginning a line with a semi-colon.
+to use one before beginning a line with a semicolon.
 
 Here is Isaacs' run down on those circumstances (verbatim, from
-[here](https://npmjs.org/doc/coding-style.html))
+[here](https://npmjs.org/doc/coding-style.html)):
 
 - `for (;;)` loops. They're actually required.
 - null loops like: `while (something) ;` (But you'd better have a good reason for doing that.)
@@ -78,18 +78,14 @@ Some examples of good semicolon usage:
 ```
 ;(x || y).doSomething()
 ;[a, b, c].forEach(doSomething)
-for (var i = 0; i < 10; i ++) {
-  switch (state) {
-    case "begin": start(); continue
-    case "end": finish(); break
-    default: throw new Error("unknown state")
-  }
-  end()
+for (var i = 0; i < 10; i++) {
+  doSomething()
 }
 ```
 
 Note that starting lines with - and + also should be prefixed with a semicolon, but this is much less common.
 
+**__To Recap:__ If a line begins with `[`, `(`, `+` or `-`, you should start it with a semicolon.**
 
 ## 80 characters per line
 
@@ -171,8 +167,8 @@ visual noise.
 *Right:*
 
 ```js
-var keys = ['foo', 'bar']
-  , values = [23, 42]
+var keys = [ 'foo', 'bar' ]
+  , values = [ 23, 42 ]
   , object = {}
   , key
 
@@ -185,8 +181,8 @@ while (items.length) {
 *Wrong:*
 
 ```js
-var keys   = ['foo', 'bar']
-var values = [23, 42]
+var keys   = [ 'foo', 'bar' ]
+var values = [ 23, 42 ]
 
 var object = {};
 while (items.length) {
@@ -220,7 +216,8 @@ var adminUsersFromDb = db.query('SELECT * FROM users ...')
 
 ## Use UpperCamelCase for constructors
 
-Constructors should be capitalized using `UpperCamelCase`.
+Constructors should be capitalized using `UpperCamelCase` (also known as
+Pascal Case).
 
 *Right:*
 
@@ -275,10 +272,10 @@ keys when your interpreter complains:
 *Right:*
 
 ```js
-var a = ['hello', 'world']
+var a = [ 'hello', 'world' ]
 var b =
   { good: 'code'
-  , 'is generally': 'pretty',
+  , 'is generally': 'pretty'
   }
 ```
 
@@ -316,7 +313,7 @@ var required = [
 ]
 ```
 For an explanation on why to use comma-first, look no further than
-[this gist by Isaacs][9]. Deviate slightly from the npm style here about the
+[this gist by Isaacs](https://gist.github.com/357981/). Deviate slightly from the npm style here about the
 level of indentation. The npm style is to line up with where the opening symbol
 naturally occurs:
 
@@ -438,9 +435,31 @@ Keep your functions short. A good function fits on a slide that the people in
 the last row of a big room can comfortably read. So don't count on them having
 perfect vision and limit yourself to ~15 lines of code per function.
 
+## Limit your parameters
+
+Functions should aim to have less than 5 parameters. 5 is the most that
+any should have. If you find yourself wanting more paramaters, you should
+generally use an options hash instead.
+
+*Good:*
+
+```js
+function animate(el, options, cb) {
+  ...
+}
+```
+
+*Bad:*
+
+```js
+function animate(el, duration, ease, delay, properties, cb) {
+  ...
+}
+```
+
 ## Keep your files small
 There are times when a 1,000+ line file is needed but as a general rule of thumb
-try and keep your file < 300 lines. More that 500 lines and it's starting to be
+try and keep your file < 300 lines. More than 500 lines and it's starting to be
 a code smell.
 
 ## Return early from functions
@@ -490,27 +509,6 @@ function isPercentage(val) {
 }
 ```
 
-## Name your closures
-
-Feel free to give your closures a name. It shows that you care about them, and
-will produce better stack traces, heap and cpu profiles.
-
-*Right:*
-
-```js
-req.on('end', function onEnd() {
-  console.log('winning')
-});
-```
-
-*Wrong:*
-
-```js
-req.on('end', function () {
-  console.log('losing')
-});
-```
-
 ## Limit nested closures
 
 Use closures, but don't nest them too much. Otherwise your code will become a mess.
@@ -534,7 +532,7 @@ function afterConnect() {
 setTimeout(function () {
   client.connect(function () {
     console.log('losing')
-  });
+  })
 }, 1000)
 ```
 
@@ -570,12 +568,14 @@ to the point and don't waffle.
 *Right:*
 
 ```js
-// 'ID_SOMETHING=VALUE' -> ['ID_SOMETHING=VALUE'', 'SOMETHING', 'VALUE']
+// 'ID_SOMETHING=VALUE' -> [ 'ID_SOMETHING=VALUE'', 'SOMETHING', 'VALUE' ]
 var matches = item.match(/ID_([^\n]+)=([^\n]+)/))
 
-// This function has a nasty side effect where a failure to increment a
-// redis counter used for statistics will cause an exception. This needs
-// to be fixed in a later iteration.
+/*
+ * This function has a nasty side effect where a failure to increment a
+ * redis counter used for statistics will cause an exception. This needs
+ * to be fixed in a later iteration.
+ */
 function loadUser(id, cb) {
   // ...
 }
@@ -614,7 +614,7 @@ Don't `throw` in asynchronous code.
 
 *Right*
 
-```
+```js
 if (unicorns.length < 10) {
   callback(new Error('not enough unicorns'))
 }
@@ -622,19 +622,19 @@ if (unicorns.length < 10) {
 
 *Wrong:*
 
-```
+```js
 if (unicorns.length < 10) {
   callback('not enough unicorns')
 }
 ```
 
-```
+```js
 if (unicorns.length < 10) {
   callback('not enough unicorns')
 }
 ```
 
-```
+```js
 if (unicorns.length < 10) {
   throw 'not enough unicorns'
 } else {
@@ -654,7 +654,7 @@ the result of a function expression to a variable.
 
 *Right:*
 
-```
+```js
 function greet() {
   console.log('hello')
 }
@@ -662,7 +662,7 @@ function greet() {
 
 *Wrong:*
 
-```
+```js
 var greet = function () {
   console.log('hello')
 }
@@ -674,18 +674,52 @@ When writing in a node style environment, export only one thing from your module
 In general, if you are assigning multiple exports, you have designed a poor API
 or you have written several modules that should be separated out.
 
+Put your module exports as close to the top of the file as possible. This helps
+someone reading your module to know what is being exported.
+
 *Right*:
 
-```
+```js
 module.exports = jim
 ```
 
 *Wrong*:
 
-```
+```js
 module.exports.jim = jim
 module.exports.bob = bob
 module.exports.barry = barry
+```
+
+## Require as soon as possible
+
+Put as many `require`s as possible in the main body of your module (so that it runs
+when it is loaded).
+
+If something is missing you want to know about it when your program starts up
+and not when it's been running in production for 48hours before hitting a certain
+code path.
+
+*Right*:
+
+```js
+module.exports = doSomething
+
+var async = require('async')
+
+function doSomething() {
+  async.map(...)
+}
+```
+
+*Wrong*:
+
+```js
+module.exports = doSomething
+
+function doSomething() {
+  require('async').map(...)
+}
 ```
 
 ## Object.freeze, Object.preventExtensions, Object.seal, with, eval
@@ -701,3 +735,35 @@ Feel free to use getters that are free from [side effects][sideeffect], like
 providing a length property for a collection class.
 
 [sideeffect]: http://en.wikipedia.org/wiki/Side_effect_(computer_science)
+
+## Embedding JS in HTML
+
+The type `attribute` is unnecessary and obsolete, so don't use it. `//<![CDATA[`
+is required if you want your document to parse as XML. You should be using
+the HTML5 DOCTYPE, in which case your document will parse as HTML meaning that
+`//<![CDATA[` is unnecessary.
+
+*Right:*
+
+```html
+<script>
+  console.log('Boo')
+</script>
+```
+
+*Wrong:*
+
+```html
+<script type="text/javascript">//<![CDATA[
+  console.log('Boo')
+//]]></script>
+```
+
+## Minify and concatenate JavaScript that is sent to the browser
+
+Minimising the number of HTTP requests and file sizes will make your site faster.
+
+## Use module.js in the browser
+
+The browser environment has no native module system. Node has a good one, so
+simlulate that with [module.js](https://github.com/bengourley/module.js).
