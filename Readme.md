@@ -515,7 +515,7 @@ function afterConnect() {
 setTimeout(function () {
   client.connect(function () {
     console.log('losing')
-  });
+  })
 }, 1000)
 ```
 
