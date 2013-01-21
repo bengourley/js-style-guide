@@ -50,7 +50,7 @@ Follow Crockford’s rules about spaces and **be consistent**:
 
 *Right:*
 ```js
-swtich (val) {
+switch (val) {
 case 1:
   console.log(val)
   break;
@@ -61,7 +61,7 @@ default:
 
 *Wrong:*
 ```js
-swtich (val) {
+switch (val) {
   case 1:
     console.log(val)
     break;
