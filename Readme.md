@@ -46,6 +46,29 @@ Follow Crockford’s rules about spaces and **be consistent**:
 - Exactly one space each side of infix operators: `5 + 5 / 3`, `10 * Math.min(a, b)`
 - No space between a prefix/postfix operator and its operand: `-8 / 2`, `i++`
 - No space after a property name and exactly one space after it in an object literal: `foo: bar`
+- Don't indent **case** statements inside **switch** statements.
+
+*Right:*
+```js
+switch (val) {
+case 1:
+  console.log(val)
+  break;
+default:
+  console.log('I only take 1')
+}
+```
+
+*Wrong:*
+```js
+switch (val) {
+  case 1:
+    console.log(val)
+    break;
+  default:
+    console.log('I only take 1')
+}
+```
 
 ## No trailing whitespace
 
@@ -555,9 +578,9 @@ they span, eg:
        */
       function getFormat(f) {
         switch (f) {
-          case '.jpg': return 'jpeg'
-          case '.gif': return 'gif'
-          default: return 'png'
+        case '.jpg': return 'jpeg'
+        case '.gif': return 'gif'
+        default: return 'png'
         }
       }
 
