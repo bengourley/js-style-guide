@@ -296,10 +296,10 @@ keys when your interpreter complains:
 
 ```js
 var a = [ 'hello', 'world' ]
-var b =
-  { good: 'code'
-  , 'is generally': 'pretty'
-  }
+  , b =
+    { good: 'code'
+    , 'is generally': 'pretty'
+    }
 ```
 
 *Wrong:*
@@ -318,11 +318,11 @@ var b = {
 
 ```js
 var required =
-  [ 'main-nav'
-  , 'local-news-selector'
-  , 'notifications'
-  , 'datepicker'
-  ]
+    [ 'main-nav'
+    , 'local-news-selector'
+    , 'notifications'
+    , 'datepicker'
+    ]
 ```
 
 *Wrong:*
@@ -348,7 +348,7 @@ var myObj = { propA: 10
             }
 ```
 
-It is better to have consistent levels of indenation, which means you don’t have
+It is better to have consistent levels of indentation, which means you don’t have
 to maintain all those indents if you rename the variable. Break a line and
 indent before the start symbol:
 
@@ -356,9 +356,9 @@ indent before the start symbol:
 
 ```js
   var myObj =
-    { propA: 10
-    , proB: 20
-    }
+      { propA: 10
+      , proB: 20
+      }
 ```
 
 ## Use the === operator
@@ -790,7 +790,7 @@ the HTML5 DOCTYPE, in which case your document will parse as HTML meaning that
 
 Minimising the number of HTTP requests and file sizes will make your site faster.
 
-## Use module.js in the browser
+## Use browserify for browser javascript
 
 The browser environment has no native module system. Node has a good one, so
-simlulate that with [module.js](https://github.com/bengourley/module.js).
+simulate that with [browserify](https://github.com/substack/node_browserify).
