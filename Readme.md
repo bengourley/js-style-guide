@@ -98,7 +98,7 @@ Here is Isaacs' run down on those circumstances (verbatim, from
 
 Some examples of good semicolon usage:
 
-```
+```js
 ;(x || y).doSomething()
 ;[a, b, c].forEach(doSomething)
 for (var i = 0; i < 10; i++) {
@@ -165,7 +165,7 @@ always appear on the left.
 
 *Right*:
 
-```
+```js
 if (true) console.log('winning')
 
 if (true) {
@@ -177,7 +177,7 @@ if (true) {
 
 *Wrong*:
 
-```
+```js
 if (true) { console.log('winning') }
 if (true) console.log('winning') else console.log('losing')
 ```
@@ -316,7 +316,7 @@ var b = {
 
 *Right:*
 
-```
+```js
 var required =
   [ 'main-nav'
   , 'local-news-selector'
@@ -327,7 +327,7 @@ var required =
 
 *Wrong:*
 
-```
+```js
 var required = [
   'main-nav',
   'local-news-selector',
@@ -342,7 +342,7 @@ naturally occurs:
 
 *Wrong:*
 
-```
+```js
 var myObj = { propA: 10
             , proB: 20
             }
@@ -354,7 +354,7 @@ indent before the start symbol:
 
 *Right:*
 
-```
+```js
   var myObj =
     { propA: 10
     , proB: 20
@@ -564,25 +564,29 @@ setTimeout(function () {
 Inline comments should be line comments: `//`, regardless of how many lines
 they span, eg:
 
-      // Only run on browsers that support media queries.
-      // If a browser doesn't support media queries, .mq()
-      // will always return false.
-      if (!window.Modernizr.mq('(min-width:0px)')) return
-      breakPoints.push(new BreakPoint(name, media).check())
+```js
+// Only run on browsers that support media queries.
+// If a browser doesn't support media queries, .mq()
+// will always return false.
+if (!window.Modernizr.mq('(min-width:0px)')) return
+breakPoints.push(new BreakPoint(name, media).check())
+```
 
-  Comments describing the functionality of a method or function should be
-  multi-line comments: `/* */`, eg:
+Comments describing the functionality of a method or function should be
+multi-line comments: `/* */`, eg:
 
-      /*
-       * Sanitizes a file-type extension
-       */
-      function getFormat(f) {
-        switch (f) {
-        case '.jpg': return 'jpeg'
-        case '.gif': return 'gif'
-        default: return 'png'
-        }
-      }
+```js
+ /*
+  * Sanitizes a file-type extension
+  */
+function getFormat(f) {
+  switch (f) {
+  case '.jpg': return 'jpeg'
+  case '.gif': return 'gif'
+  default: return 'png'
+  }
+}
+```
 
 Try to write comments that explain higher level mechanisms or clarify difficult
 segments of your code. Don't use comments to restate trivial things. Be terse,
