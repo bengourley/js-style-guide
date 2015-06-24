@@ -793,4 +793,4 @@ Minimising the number of HTTP requests and file sizes will make your site faster
 ## Use browserify for browser javascript
 
 The browser environment has no native module system. Node has a good one, so
-simulate that with [browserify](https://github.com/substack/node_browserify).
+simulate that with [browserify](https://github.com/substack/node-browserify).
