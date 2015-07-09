@@ -28,4 +28,14 @@
 , "trailing": false
 , "undef": true
 , "unused": true
+, "globals":
+  { "Backbone": true
+  , "describe": true
+  , "it": true
+  , "before": true
+  , "beforeEach": true
+  , "after": true
+  , "afterEach": true
+  , "Alloy": true
+  }
 }
