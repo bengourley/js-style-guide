@@ -452,6 +452,12 @@ if (user.isAdmin() || user.isModerator()) {
 }
 ```
 
+## Annonymous Functions
+
+Anonymous functions are discouraged as they make stacktraces harder to follow.
+
+`module.exports` should always be a named function.
+
 ## Write small functions
 
 Keep your functions short. A good function fits on a slide that the people in
